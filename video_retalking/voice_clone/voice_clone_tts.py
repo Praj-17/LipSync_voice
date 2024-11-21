@@ -5,9 +5,9 @@ from scipy.io.wavfile import write
 import os
 
 class VoiceCloner:
-    def __init__(self, speaker_dir = "speakers") -> None:
+    def __init__(self, text, speaker_dir = "speakers") -> None:
         self.tts = api_fast.TextToSpeech(kv_cache=True, half=True)
-        self.aftr_template = "Hello, I have joined Aftr and I also invite you to join the platform"
+        self.aftr_template = text
         self.speaker_dir = speaker_dir
 
     def save_wav_file(self, tensor, file_path, sample_rate = 22050):
@@ -29,8 +29,8 @@ class VoiceCloner:
         write(file_path, sample_rate, audio_np)
         return file_path
     def generate_voice(self, voice_dir):
-        output_path = os.path.join(voice_dir, "clone_voice.wav")
         voice_dir = os.path.join(self.speaker_dir, voice_dir)
+        output_path = os.path.join(voice_dir, "clone_voice.wav")
         clips_paths = [os.path.join(voice_dir, i) for i in os.listdir(voice_dir) if i.endswith(".mp3") or i.endswith(".wav")]
         reference_clips = [utils.audio.load_audio(p, 22050) for p in clips_paths]
 

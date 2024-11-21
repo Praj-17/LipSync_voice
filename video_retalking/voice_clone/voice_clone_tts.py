@@ -28,7 +28,8 @@ class VoiceCloner:
         # Save as a WAV file
         write(file_path, sample_rate, audio_np)
         return file_path
-    def generate_voice(self, voice_dir, output_path):
+    def generate_voice(self, voice_dir):
+        output_path = os.path.join(voice_dir, "clone_voice.wav")
         voice_dir = os.path.join(self.speaker_dir, voice_dir)
         clips_paths = [os.path.join(voice_dir, i) for i in os.listdir(voice_dir) if i.endswith(".mp3") or i.endswith(".wav")]
         reference_clips = [utils.audio.load_audio(p, 22050) for p in clips_paths]

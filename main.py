@@ -10,9 +10,9 @@ voice_cloner = VoiceCloner(speaker_dir="")
 
 
 if __name__ == "__main__":
-    audio = voice_cloner.generate_voice(voice_dir = "speakers/obama", output_path= "output.wav")
-    run_inference(
-        face='video_retalking/examples/face/7.mp4',
-        audio_path='output.wav',
-        outfile='video_retalking/results/obama_7_2.mp4',
+    audio = voice_cloner.generate_voice(voice_dir = "speakers\obama")
+    outfile = run_inference(
+        face='speakers\obama\2.mp4',
+        audio_path=audio
     )
+    print("Output ready at: ",outfile )

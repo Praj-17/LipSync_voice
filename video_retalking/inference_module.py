@@ -31,8 +31,7 @@ warnings.filterwarnings("ignore")
 
 def run_inference(
     face,                # Replaces args.face
-    audio_path,          # Replaces args.audio
-    outfile,             # Replaces args.outfile
+    audio_path,          # Replaces args.audio            # Replaces args.outfile
     tmp_dir='temp',      # Replaces args.tmp_dir with default value
     fps=None,            # Replaces args.fps
     crop=(0, -1, 0, -1), # Replaces args.crop with default value
@@ -50,6 +49,7 @@ def run_inference(
     pads=[0, 20, 0, 0],  # Added: Replaces args.DNet_path with default path
     face_det_batch_size = 4
 ):
+    outfile = os.path.join(os.path.dirname(face), "result.mp4")
     # Changed: Create an args-like object using argparse.Namespace
     args = argparse.Namespace(
         face=face,
@@ -343,7 +343,7 @@ def run_inference(
     command = f'ffmpeg -loglevel error -y -i {args.audio} -i {output_path} -strict -2 -q:v 1 {args.outfile}'  # Changed: Use args.outfile and paths
     subprocess.call(command, shell=platform.system() != 'Windows')
     print('outfile:', args.outfile)
-
+    return outfile
 
 # Corrected datagen function to fix the 'shape' attribute error and variable resetting
 def datagen(frames, mels, full_frames, frames_pil, cox, args):  # Changed: Accept args as a parameter

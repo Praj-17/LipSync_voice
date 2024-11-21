@@ -1,0 +1,1 @@
+python inference.py --face examples/face/7.mp4 --audio examples/audio/2.wav --outfile results/2_7.mp4

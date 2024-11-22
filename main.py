@@ -24,7 +24,15 @@ class AiVideoGenerator:
         face_video = self.download_video(url,video_name)
         return face_video
 
+    def generate_video_local(self, face_video, audio_directory):
 
+        audio = self.voice_cloner.generate_voice(voice_dir = audio_directory)
+
+        outfile = self.lip_syncer.inference(
+            face_path=face_video,
+            audio_path=audio
+        )
+        return outfile
         
 
     
@@ -131,5 +139,5 @@ if __name__ == "__main__":
 
     
     ai_generator = AiVideoGenerator()
-    outfile = ai_generator.generate_template_video(face_video=r"speakers/obama/2.mp4", audio_directory="obama")
+    outfile = ai_generator.generate_video_local(face_video=r"speakers\obama\s.mp4", audio_directory=r"obama")
     print("Output ready at: ", outfile )

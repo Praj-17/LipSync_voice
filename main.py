@@ -139,5 +139,5 @@ if __name__ == "__main__":
 
     
     ai_generator = AiVideoGenerator()
-    outfile = ai_generator.generate_video_local(face_video=r"speakers\obama\s.mp4", audio_directory=r"obama")
+    outfile = ai_generator.generate_video_local(face_video=r"speakers\obama\obama.mp4", audio_directory=r"obama")
     print("Output ready at: ", outfile )
